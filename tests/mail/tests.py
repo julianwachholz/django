@@ -889,6 +889,15 @@ class SMTPBackendTests(BaseEmailBackendTests, SimpleTestCase):
         self.assertEqual(backend.username, 'not empty username')
         self.assertEqual(backend.password, 'not empty password')
 
+    @override_settings(EMAIL_CONFIG={
+        'USER': "different username",
+        'PASSWORD': "different password"
+    })
+    def test_email_authentication_use_settings_dict(self):
+        backend = smtp.EmailBackend()
+        self.assertEqual(backend.username, 'different username')
+        self.assertEqual(backend.password, 'different password')
+
     @override_settings(
         EMAIL_HOST_USER="not empty username",
         EMAIL_HOST_PASSWORD="not empty password")

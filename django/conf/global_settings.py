@@ -192,6 +192,19 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 
+# Default SMTP configuration used by the SMTP EmailBackend.
+DEFAULT_EMAIL_CONFIG = {
+    'HOST': EMAIL_HOST,
+    'PORT': EMAIL_PORT,
+    'USER': EMAIL_HOST_USER,
+    'PASSWORD': EMAIL_HOST_PASSWORD,
+    'USE_TLS': EMAIL_USE_TLS,
+    'USE_SSL': EMAIL_USE_SSL,
+}
+
+# Overrides for the default SMTP server configuration.
+EMAIL_CONFIG = {}
+
 # List of strings representing installed apps.
 INSTALLED_APPS = ()
 
