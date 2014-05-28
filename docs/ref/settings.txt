@@ -1135,51 +1135,127 @@ Default: Not defined
 
 The directory used by the ``file`` email backend to store output files.
 
+.. setting:: EMAIL_CONFIG
+
+EMAIL_CONFIG
+------------
+
+.. versionadded:: 1.8
+
+Default: ``{}`` (Empty dictionary)
+
+A dictionary containing the settings to use for sending email through the SMTP
+email backend. You may only specify the options you need, the dictionary is
+updated automatically with the defaults below.
+
 .. setting:: EMAIL_HOST
 
-EMAIL_HOST
-----------
+HOST
+~~~~
 
 Default: ``'localhost'``
 
 The host to use for sending email.
 
-See also :setting:`EMAIL_PORT`.
+.. setting:: EMAIL_PORT
+
+PORT
+~~~~
+
+Default: ``25``
+
+Port to use for the SMTP server defined in :setting:`HOST <EMAIL_HOST>`.
+
+.. setting:: EMAIL_HOST_USER
+
+USER
+~~~~
+
+Default: ``''`` (Empty string)
+
+Username to use for the SMTP server defined in :setting:`HOST <EMAIL_HOST>`.
+If empty, Django won't attempt authentication.
 
 .. setting:: EMAIL_HOST_PASSWORD
+
+PASSWORD
+~~~~~~~~
+
+Default: ``''`` (Empty string)
+
+Password to use for the SMTP server defined in :setting:`HOST <EMAIL_HOST>`.
+This setting is used in conjunction with :setting:`USER <EMAIL_HOST_USER>` when
+authenticating to the SMTP server. If either of these settings is empty, Django
+won't attempt authentication.
+
+.. setting:: EMAIL_USE_TLS
+
+USE_TLS
+~~~~~~~
+
+Default: ``False``
+
+Whether to use a TLS (secure) connection when talking to the SMTP server.
+This is used for explicit TLS connections, generally on port 587. If you are
+experiencing hanging connections, see the implicit TLS setting
+:setting:`USE_SSL <EMAIL_USE_SSL>`.
+
+.. setting:: EMAIL_USE_SSL
+
+USE_SSL
+~~~~~~~
+
+.. versionadded:: 1.7
+
+Default: ``False``
+
+Whether to use an implicit TLS (secure) connection when talking to the SMTP
+server. In most email documentation this type of TLS connection is referred
+to as SSL. It is generally used on port 465. If you are experiencing problems,
+see the explicit TLS setting :setting:`USE_TLS <EMAIL_USE_TLS>`.
+
+Note that :setting:`USE_TLS <EMAIL_USE_TLS>`/:setting:`USE_SSL <EMAIL_USE_SSL>`
+are mutually exclusive, so only set one of those settings to ``True``.
+
+.. setting:: OLD_EMAIL_HOST
+
+EMAIL_HOST
+----------
+
+.. deprecated:: 1.8
+
+    Use the :setting:`HOST <EMAIL_HOST>` entry in the
+    :setting:`EMAIL_CONFIG` dictionary.
+
+.. setting:: OLD_EMAIL_HOST_PASSWORD
 
 EMAIL_HOST_PASSWORD
 -------------------
 
-Default: ``''`` (Empty string)
+.. deprecated:: 1.8
 
-Password to use for the SMTP server defined in :setting:`EMAIL_HOST`. This
-setting is used in conjunction with :setting:`EMAIL_HOST_USER` when
-authenticating to the SMTP server. If either of these settings is empty,
-Django won't attempt authentication.
+    Use the :setting:`PASSWORD <EMAIL_HOST_PASSWORD>` entry in the
+    :setting:`EMAIL_CONFIG` dictionary.
 
-See also :setting:`EMAIL_HOST_USER`.
-
-.. setting:: EMAIL_HOST_USER
+.. setting:: OLD_EMAIL_HOST_USER
 
 EMAIL_HOST_USER
 ---------------
 
-Default: ``''`` (Empty string)
+.. deprecated:: 1.8
 
-Username to use for the SMTP server defined in :setting:`EMAIL_HOST`.
-If empty, Django won't attempt authentication.
+    Use the :setting:`USER <EMAIL_HOST_USER>` entry in the
+    :setting:`EMAIL_CONFIG` dictionary.
 
-See also :setting:`EMAIL_HOST_PASSWORD`.
-
-.. setting:: EMAIL_PORT
+.. setting:: OLD_EMAIL_PORT
 
 EMAIL_PORT
 ----------
 
-Default: ``25``
+.. deprecated:: 1.8
 
-Port to use for the SMTP server defined in :setting:`EMAIL_HOST`.
+    Use the :setting:`PORT <EMAIL_PORT>` entry in the
+    :setting:`EMAIL_CONFIG` dictionary.
 
 .. setting:: EMAIL_SUBJECT_PREFIX
 
@@ -1192,34 +1268,25 @@ Subject-line prefix for email messages sent with ``django.core.mail.mail_admins`
 or ``django.core.mail.mail_managers``. You'll probably want to include the
 trailing space.
 
-.. setting:: EMAIL_USE_TLS
+.. setting:: OLD_EMAIL_USE_TLS
 
 EMAIL_USE_TLS
 -------------
 
-Default: ``False``
+.. deprecated:: 1.8
 
-Whether to use a TLS (secure) connection when talking to the SMTP server.
-This is used for explicit TLS connections, generally on port 587. If you are
-experiencing hanging connections, see the implicit TLS setting
-:setting:`EMAIL_USE_SSL`.
+    Use the :setting:`USE_TLS <EMAIL_USE_TLS>` entry in the
+    :setting:`EMAIL_CONFIG` dictionary.
 
-.. setting:: EMAIL_USE_SSL
+.. setting:: OLD_EMAIL_USE_SSL
 
 EMAIL_USE_SSL
 -------------
 
-.. versionadded:: 1.7
+.. deprecated:: 1.8
 
-Default: ``False``
-
-Whether to use an implicit TLS (secure) connection when talking to the SMTP
-server. In most email documentation this type of TLS connection is referred
-to as SSL. It is generally used on port 465. If you are experiencing problems,
-see the explicit TLS setting :setting:`EMAIL_USE_TLS`.
-
-Note that :setting:`EMAIL_USE_TLS`/:setting:`EMAIL_USE_SSL` are mutually
-exclusive, so only set one of those settings to ``True``.
+    Use the :setting:`USE_SSL <EMAIL_USE_SSL>` entry in the
+    :setting:`EMAIL_CONFIG` dictionary.
 
 .. setting:: FILE_CHARSET
 
